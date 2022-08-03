@@ -2,6 +2,7 @@
     <div class="helloclass">
         <h1>Burasi HelloWorld</h1>
          <form class="form" @submit.prevent="dersEkle">
+            <!-- prevent sayfayý tekrardan yüklemeden ekleme iþlemini gerçekleþtirir  -->
             <input type="text" placeholder="Ders Ekle" v-model="dersler"/>
         </form>
         <ul>
