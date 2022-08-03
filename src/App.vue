@@ -12,11 +12,14 @@
   <h1>parent componenet(User)</h1>
   <p>Burasý parent component her þeyin import edildiði componenett</p>
   <button @click="changeName">Degistir</button>
+  <p>child den gelen veri:{{chilData}} </p>
+
+
   <hr>
   <div class="row">
 
     <div class="child1">
-      <childOne :name="title"></childOne>
+      <childOne @data="chilData=$event" :name="title"></childOne>
     </div>
 
     <div class="child2">
@@ -41,7 +44,8 @@ import ChildTwo from './components/ChildTwo.vue'
     },
     data(){
       return{
-        title:"Serif"
+        title:"Serif",
+        chilData:""
       }
     },
     methods:{
