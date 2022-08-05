@@ -38,8 +38,10 @@
   <button @click="selectedComponent='NewMemoryComponent'">NewMemoryComponent</button>
   <button @click="selectedComponent='AuthorComponent'">AuthorComponent</button>
  
+ <keep-alive>
   <component :is="selectedComponent">
   </component>
+  </keep-alive>
   <!-- <MemoryComponent>
     <h1>BAslik</h1>
     <p>Slot kullanimi</p>
