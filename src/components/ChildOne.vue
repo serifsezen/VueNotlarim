@@ -8,7 +8,10 @@
 
 <script>
 export default {
-    props:["name"],
+    props:{
+        name:String
+
+    },
     setup() {
     },
     methods:{

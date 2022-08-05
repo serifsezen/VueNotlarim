@@ -19,33 +19,63 @@
   <div class="row">
 
     <div class="child1">
-      <childOne @data="chilData=$event" :name="title"></childOne>
+      <childOne  @data="chilData=$event" :name="title"></childOne>
     </div>
 
     <div class="child2">
-      <childTwo></childTwo>
+      <childTwo ></childTwo>
     </div>
 
   </div>
 
 </div>
+
+
+
+
+<div class="container">
+  <button @click="selectedComponent='MemoryComponent'">MemoryComponent</button>
+  <button @click="selectedComponent='NewMemoryComponent'">NewMemoryComponent</button>
+  <button @click="selectedComponent='AuthorComponent'">AuthorComponent</button>
+ 
+  <component :is="selectedComponent">
+  </component>
+  <!-- <MemoryComponent>
+    <h1>BAslik</h1>
+    <p>Slot kullanimi</p>
+  </MemoryComponent> -->
+</div>
 </template>
+
+
+
+
+
 
 <script>
 
 import HelloWorld from './components/HelloWorld.vue'
 import ChildOne from './components/ChildOne.vue'
 import ChildTwo from './components/ChildTwo.vue'
+import MemoryComponent from './components/MemoryComponent.vue'
+import NewMemoryComponent from './components/NewMemoryComponent.vue'
+import AuthorComponent from './components/AuthorComponent.vue'
   export default {
     components:{
-      HelloWorld,
-      ChildOne,
-      ChildTwo
-    },
+    HelloWorld,
+    ChildOne,
+    ChildTwo,
+    MemoryComponent,
+    // eslint-disable-next-line vue/no-unused-components
+    NewMemoryComponent,
+    // eslint-disable-next-line vue/no-unused-components
+    AuthorComponent
+},
     data(){
       return{
         title:"Serif",
-        chilData:""
+        chilData:"",
+        selectedComponent:""
       }
     },
     methods:{
@@ -91,5 +121,8 @@ import ChildTwo from './components/ChildTwo.vue'
 }
 .child2{
   background-color: #959597;
+}
+button{
+  margin:5px;
 }
 </style>
