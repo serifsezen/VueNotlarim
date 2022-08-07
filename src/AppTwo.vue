@@ -10,42 +10,67 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="username">Kullanici Adi</label>
-                <input type="text" class="form-control" id="username" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  v-model.trim="userData.username"
+                />
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" />
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  v-model.lazy="userData.password"
+                />
               </div>
               <div class="form-group">
                 <label for="age">Yas</label>
-                <input type="text" class="form-control" id="age" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="age"
+                  v-model="userData.age"
+                />
               </div>
               <div class="form-group">
                 <label for="explanation">Aciklama</label>
-                <input type="text" class="form-control" id="explanation" />
+                <textarea
+                  id="explanation"
+                  rows="3"
+                  class="form-control"
+                  v-model="userData.explanation"
+                ></textarea>
               </div>
               <div class="form-group form-check">
                 <input
                   type="checkbox"
                   class="form-check-input"
                   id="exampleCheck1"
+                  value="Yazilim"
+                  v-model="userData.ilgiAlanlari"
                 />
                 <label
                   class="form-check-label"
                   style="margin-right: 10px; padding: 5px"
                   for="exampleCheck1"
+                  
                 >
                   Yazilim</label
                 >
                 <input
                   type="checkbox"
                   class="form-check-input"
-                  id="exampleCheck1"
+                  id="exampleCheck2"
+                  value="Donanim"
+                  v-model="userData.ilgiAlanlari"
                 />
                 <label
                   class="form-check-label"
                   style="padding: 5px"
-                  for="exampleCheck1"
+                  for="exampleCheck2"
                   >Donanim</label
                 >
               </div>
@@ -55,6 +80,8 @@
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault1"
+                  value="Erkek"
+                  v-model="userData.cinsiyet"
                 />
                 <label
                   class="form-check-label"
@@ -69,6 +96,8 @@
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault2"
+                  value="Kadin"
+                  v-model="userData.cinsiyet"
                 />
                 <label
                   class="form-check-label"
@@ -80,11 +109,8 @@
               </div>
               <div class="form-group">
                 <label for="sel1">Sehir</label>
-                <select class="form-control" id="sel1">
-                  <option>Antalya</option>
-                  <option>izmir</option>
-                  <option>istanbul</option>
-                  <option>van</option>
+                <select class="form-control" v-model="userData.seciliSehir">
+                  <option v-for="(item,index) in userData.sehir" :key="index">{{item}}</option>
                 </select>
               </div>
               <button type="submit" class="btn btn-primary">Gonder</button>
@@ -99,20 +125,19 @@
       <div class="panel panel-info">
         <div class="panel-heading">Form Verileri</div>
         <div class="panel-body">
-            <div class="col-md-12">
-                <p>Kullanici Adi:</p>
-                <p>Sifre:</p>
-                <p>Yas:</p>
-                <p>Aciklama:</p>
-                <p><strong>ilgi Alanlari:</strong> </p>
-                <ul>
-                    <li></li>
-                </ul>
-                <p>cinsiyet:</p>
-                <p>Sehir:</p>
-                <p>Toggle:</p>
-            </div>
-            
+          <div class="col-md-12">
+            <p>Kullanici Adi: {{ userData.username }}</p>
+            <p>Sifre:{{ userData.password }}</p>
+            <p>Yas:{{ userData.age }}</p>
+            <p style="white-space: pre;"> Aciklama:{{ userData.explanation }}</p>
+            <p><strong>ilgi Alanlari:</strong></p>
+            <ul>
+              <li v-for="(item,index) in userData.ilgiAlanlari" :key="index">{{item}}</li>
+            </ul>
+            <p>cinsiyet:{{userData.cinsiyet}}</p>
+            <p>Sehir:{{userData.seciliSehir}}</p>
+            <p>Toggle:</p>
+          </div>
         </div>
       </div>
     </div>
@@ -123,6 +148,19 @@
 <script>
 export default {
   components: {},
-  setup() {},
+  data() {
+    return {
+      userData: {
+        username: "",
+        password: "",
+        age: "",
+        explanation: "",
+        ilgiAlanlari:[],
+        cinsiyet:'',
+        sehir:["Antalya","izmir","istanbul","van"],
+        seciliSehir:''
+      },
+    };
+  },
 };
 </script>
